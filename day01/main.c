@@ -3,7 +3,8 @@
 
 #define BUFFER_COUNT 1024
 
-void PartOne() {
+void PartOne() 
+{
     char buffer[BUFFER_COUNT];
     unsigned int sum = 0;
 
