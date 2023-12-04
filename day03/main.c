@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 
 #define BUFFER_COUNT 1024
 #define LINE_LEN 141
@@ -140,7 +141,7 @@ void PartOne()
                     }
 
                     break; // No more valid numbers on this line, move to the next line
-                }               
+                }
             }
         }
     }
@@ -148,7 +149,7 @@ void PartOne()
     printf("Sum: %d\n", sum);
 }
 
-void PartTwo()
+void PartTwo(FILE* fp)
 {
     char buffer[BUFFER_COUNT];
 
@@ -156,12 +157,7 @@ void PartTwo()
     memset(numbers, 0, NUMBER_COUNT * sizeof(Number));
     int numberIndex = 0;
 
-    FILE* fp = fopen("input.txt", "r");
-
-    if (fp == NULL)
-    {
-        printf("Unable to open file.");
-    }
+    fseek(fp, 0, SEEK_SET);
 
     int currentNumberValue = 0;
     Number currentNumber = { 0 };
@@ -232,20 +228,43 @@ void PartTwo()
                     }
 
                     break;
-                }               
+                }
             }
 
             if (foundNumbers == 2) sum += product;
         }
     }
 
-    printf("Sum: %d\n", sum);
+    //printf("Sum: %d\n", sum);
+
+    //fclose(fp);
 }
 
 int main()
 {
-    PartOne();
-    PartTwo();
+
+    FILE* fp = fopen("input.txt", "r");
+
+    if (fp == NULL)
+    {
+        printf("Unable to open file.");
+    }
+
+    // PartOne();
+
+    clock_t begin = clock();
+
+    int iterations = 20000;
+
+    for (int i = 0; i < iterations; i++)
+    {
+        PartTwo(fp);
+    }
+
+    clock_t end = clock();
+    double timeSpent = (double)(end - begin) / CLOCKS_PER_SEC / iterations;
+
+    printf("Time: %f", timeSpent);
 
     return 0;
 }
