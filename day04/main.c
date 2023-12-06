@@ -146,8 +146,6 @@ void PartTwo()
                     for (int i = 0; i < WINNING_NUM_COUNT; i++)
                     {
                         if (currentNumber != winningNumbers[i]) continue;
-
-                        printf("Parsed winning number: %d\n", currentNumber);
                         numMatches++;
                     }
                 }
@@ -186,14 +184,14 @@ void PartTwo()
         cardsProcessedCount[i] = processedCount;
     }
 
-    for (int i = 0; i < NUM_CARDS; i++)
-    {
-        printf("Card: %d; matches: %d\n", (i + 1), cards[i]);
-    }
+    // for (int i = 0; i < NUM_CARDS; i++)
+    // {
+    //     printf("Card: %d; matches: %d\n", (i + 1), cards[i]);
+    // }
 
     for (int i = 0; i < NUM_CARDS; i++)
     {
-        printf("Card: %d; processed: %d\n", (i + 1), cardsProcessedCount[i]);
+        //printf("Card: %d; processed: %d\n", (i + 1), cardsProcessedCount[i]);
         sum += cardsProcessedCount[i];
     }
 
